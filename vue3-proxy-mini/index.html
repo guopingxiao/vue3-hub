@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <button id="btn">戳我</button>
+  <script src="./vue3-mini-proxy.js"></script>
+  <script>
+    // demo
+    const root = document.getElementById('app')
+    const btn = document.getElementById('btn')
+    const o = {   // 定义一个对象
+      name:'xgp',
+      age:1
+    }
+    // 响应式对象obj
+    const obj = reactive(o)
+    const double = computed(()=>obj.age*2) // computed的响应式对象
+    
+    // 副作用
+    effect(()=>{
+      // 数据变了，响应式执行这里的代码fn
+      // fn会包装一层格式，方便判断computed，effffect
+      root.innerHTML = `<h1>${obj.name}今年${obj.age}岁了，乘以2是：${double.value}</h1>` // 这里响应式不涉及vdom，直接操作dom， 简单粗暴操作dom对象
+    })
+
+    btn.addEventListener('click',()=>{
+      // 具体的响应式是指：只操作js对象, 引起一些副作用effct， 引起dom变化（vdom变化），页面发送变化；
+      obj.age+=1
+    }, false)
+
+  </script>
+</body>
+</html>
