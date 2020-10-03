@@ -42,7 +42,6 @@ function draw(ele, isChild) {
     ctx.clearRect(0, 0, 500, 500)
   }
 
-
   ctx.fillStyle = ele.fill || 'white'
   ctx.fillRect(...ele.pos)
   if (ele.text) {
@@ -58,7 +57,7 @@ function draw(ele, isChild) {
 
 }
 
-const { createApp: originCa } = createRenderer({
+const { createApp: originCreateApp } = createRenderer({
   insert: (child, parent, anchor) => {
     if (typeof child == 'string') {
       parent.text = child
@@ -102,7 +101,7 @@ const { createApp: originCa } = createRenderer({
 
 });
 function createApp(...args) {
-  const app = originCa(...args)
+  const app = originCreateApp(...args)
   return {
     mount(selector) {
       const canvas = document.createElement('canvas')

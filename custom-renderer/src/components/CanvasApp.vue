@@ -11,11 +11,11 @@
 import {ref} from 'vue'
 export default {
   setup(){
-    const name = ref('kkb')
+    const name = ref('小平果')
     const pos = ref([20,120,200,100])
     const count = ref(1)
-    const setName = (n)=>{
-      name.value = n
+    const setName = (name)=>{
+      name.value = name
       pos.value[1]+=20
       count.value+=2
     }

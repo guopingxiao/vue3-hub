@@ -23,7 +23,7 @@ export default {
         setInterval(()=>{
             y.value+=0.3
             x.value+=0.5
-        },100)
+        },500)
         return {y,x}
     }
 }
